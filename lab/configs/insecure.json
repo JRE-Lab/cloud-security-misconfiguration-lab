@@ -1,0 +1,52 @@
+diff --git a/lab/configs/insecure.json b/lab/configs/insecure.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..cc84fdcb4ec2cacaf297a7cf29a67ee7d9de15b3
+--- /dev/null
++++ b/lab/configs/insecure.json
+@@ -0,0 +1,46 @@
++{
++  "buckets": [
++    {
++      "name": "public-assets",
++      "public": true,
++      "encryption": false
++    },
++    {
++      "name": "logs-archive",
++      "public": false,
++      "encryption": false
++    }
++  ],
++  "security_groups": [
++    {
++      "name": "web-sg",
++      "ingress": [
++        {"protocol": "tcp", "port": 22, "cidr": "0.0.0.0/0"},
++        {"protocol": "tcp", "port": 80, "cidr": "0.0.0.0/0"}
++      ]
++    },
++    {
++      "name": "db-sg",
++      "ingress": [
++        {"protocol": "tcp", "port": 5432, "cidr": "0.0.0.0/0"}
++      ]
++    }
++  ],
++  "iam_policies": [
++    {
++      "name": "admin",
++      "actions": ["*"],
++      "resources": ["*"]
++    }
++  ],
++  "logging": {
++    "cloudtrail": false
++  },
++  "databases": [
++    {
++      "name": "customers",
++      "public_access": true,
++      "encrypted": false
++    }
++  ]
++}
